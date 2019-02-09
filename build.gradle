@@ -1,0 +1,24 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+plugins { id "com.jfrog.bintray" version "1.8.4" }
+apply plugin: 'java'
+
+sourceCompatibility = '1.8'
+
+group 'com.github.pengrad'
+version '1.0'
+
+bintray {
+    user = project.hasProperty('BINTRAY_USER') ? BINTRAY_USER : ""
+    key = project.hasProperty('BINTRAY_KEY') ? BINTRAY_KEY : ""
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'jdk9-deps'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/pengrad/jdk9-deps.git'
+    }
+}
